@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block contenido %}
+
+{% with messages= get_flashed_messages() %}
+{%if messages%}
+ {%for message in messages%}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>{{message}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+ {%endfor%}
+{%endif%}
+{%endwith%}
+
+<div class="row" style="background-image:url('../static/imagen/fondocolor..jpeg');   background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;  height: 800px;
+ " >
+  {% for word in words %}
+    <div class="card" style="width: 18rem; height: 300px;margin-top: 20px; margin-left: 10px">
+        <div class="card-body">
+            <h5 class="card-title">{{word[1]}}</h5>
+            <p class="card-text">{{word[2]}}</p>
+            <a href="/show_word/{{word.0}}" class="btn btn-primary">View</a>
+            <a href="/delete_word/{{word.0}}" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

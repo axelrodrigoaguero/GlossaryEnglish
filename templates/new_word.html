@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+
+{% block contenido %}
+{% with messages= get_flashed_messages() %}
+{%if messages%}
+ {%for message in messages%}
+    <div class="alert alert-success alert-dismissible fade show" role="alert" >
+    <strong>{{message}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+ {%endfor%}
+{%endif%}
+{%endwith%}
+<div class="row" style="background-image:url('../static/imagen/fondocolor..jpeg');   background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;  height: 800px;
+ " >
+
+    <!-- <div class="card text-bg-info mb-3" style=" width: 400px; height: 500px; margin-top: 100px; margin-left: 500px;">
+      <div  class="card-header"><h2 style="margin-left: 0px;">New word!</h2></div>
+        <div class="card-body">
+            <form method="POST" action="/save_word">
+                <div class="form-group">
+                    <label style="margin-left: 0px;" for = "word">Word:</label>
+                    <input style="width: 300px; margin-left: 20px;" type="text" class="form-control" name="word" id="word"/>
+
+                    <label style="margin-left: 0px;" for = "spanish">Spanish:</label>
+                    <input style="width: 300px; margin-left: 20px;" type="text" class="form-control" name="spanish" id="spanish"/>
+
+                    <label style="margin-left: 0px;" for = "meaning">Meaning:</label>
+                    <input style="width: 300px; margin-left: 20px;" type="text"  class="form-control" name="meaning" id="meaning"/>
+
+                    <label style="margin-left: 0px;" for="spanish_meaning">Spanish meaning:</label>
+                    <input style="width: 300px; margin-left: 20px;" type="text" class="form-control" id="spanish_meaning" name="spanish_meaning"/>
+                </div>
+                <button style="margin-left: 0px; margin-top: 30px;" type="submit" class="btn btn-warning"> Save word!</button>
+            </form>
+        </div>
+    </div> -->
+
+    <div class="card">
+        <h2>New word!</h2>
+        <form class="form" method="POST" action="/save_word">
+          <input class="form-input" type="text" placeholder="Word" name="word" id="word">
+          <input class="form-input" type="text" placeholder="Spanish" name="spanish" id="spanish">
+          <input class="form-input" type="text" placeholder="Meaning" name="spanish_meaning" id="spanish_meaning">
+          <input class="form-input" type="text" placeholder="Spanish Meaning">
+          <button class="form-button" type="submit">Save Word</button>
+        </form>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+{% endblock %}

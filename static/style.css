@@ -1,0 +1,80 @@
+
+*{
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+    
+}
+
+/* barra de navegacion */
+
+.navbar {
+    background-color: #00a2ff;
+    padding: 10px 0;
+    height: 90px;
+  }
+
+  .nav-list {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-item {
+    margin: 0 15px;
+    transition: transform 0.3s ease, font-size 0.3s ease;
+  }
+
+  .nav-item a {
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+  }
+
+  .nav-item:hover {
+    transform: scale(1.2);
+    font-size: 18px;
+  }
+
+  
+  /*Formulario de Nueva Palabra*/
+
+  .row .card {
+    background-color: #3ad4fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    max-height: 480px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 50px;
+    margin-left: 500px;
+  }
+
+  .row .form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .row .form-input {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .row .form-button {
+    background-color: #00a2ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .row .form-button:hover {
+    transform: scale(1.1);
+  }
