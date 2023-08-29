@@ -78,3 +78,14 @@
   .row .form-button:hover {
     transform: scale(1.1);
   }
+
+    /*Listado Palabra*/
+
+    .row .card_w {
+      display: inline-block;
+      background-color: #3ad4fa;
+      border-radius: 10px;
+      width: 350px;
+      height: 200px;
+      margin: 30px;
+    }
