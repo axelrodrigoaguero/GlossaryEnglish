@@ -12,14 +12,14 @@ class DBAccess:
         self.con.commit()
         return self.cursor.fetchone()
 
-    def agregar_palabra(self, esp, eng, us):
-        sql = f'INSERT INTO palabra(english,spanish,id_usuario) VALUES ("{eng}","{esp}",{us})'
+    def agregar_palabra(self, eng, esp,  us,sta):
+        sql = f'INSERT INTO palabra(english,spanish,id_usuario,state) VALUES ("{eng}","{esp}",{us},"{sta}")'
         self.cursor.execute(sql)
         self.con.commit()
         return self.cursor.lastrowid
 
-    def agregar_usuario(self, last_name, email, cell_phone, teacher_or_student):
-        sql = f'INSERT INTO usuario(last_name ,email, cell_phone, teacher_or_student) VALUES ("{last_name}","{email}","{cell_phone}","{teacher_or_student}")'
+    def agregar_usuario(self, last_name, email, password, teacher_or_student):
+        sql = f'INSERT INTO usuario(last_name ,email, password, teacher_or_student) VALUES ("{last_name}","{email}","{password}","{teacher_or_student}")'
         self.cursor.execute(sql)
         self.con.commit()
 
