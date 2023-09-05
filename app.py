@@ -33,7 +33,7 @@ def save_word():
         db = DBAccess("database/glosario.db")
         word = request.values.get("word")
         spanish = request.values.get("spanish")
-        nuevo_id = db.agregar_palabra(spanish,word,1)
+        nuevo_id = db.agregar_palabra(spanish,word,1,"pendiente")
         meaning= request.values.get("meaning")
         spanish_meaning = request.values.get("spanish_meaning")
         nuevo_id = db.agregar_significado(meaning, spanish_meaning,  nuevo_id)
@@ -56,10 +56,10 @@ def new_user_create():
         db = DBAccess("database/glosario.db")
         name = request.values.get("firstname")
         email = request.values.get("email")
-        cell_phone = request.values.get("cell_phone")
+        password = request.values.get("password")
         teacher_or_student = request.values.get("teacher_or_student")
-        nuevo_id = db.agregar_usuario(name, email, cell_phone,teacher_or_student)
-        return app.redirect(url_for("new_word"))
+        nuevo_id = db.agregar_usuario(name, email, password,teacher_or_student)
+        return app.redirect(url_for("new_user"))
 
     return "ok"
 
