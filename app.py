@@ -36,7 +36,7 @@ def save_word():
         nuevo_id = db.agregar_palabra(spanish,word,1)
         meaning= request.values.get("meaning")
         spanish_meaning = request.values.get("spanish_meaning")
-        nuevo_id = db.agregar_significado(spanish_meaning, meaning, nuevo_id)
+        nuevo_id = db.agregar_significado(meaning, spanish_meaning,  nuevo_id)
         flash("Word Saved")
         return app.redirect(url_for("new_word"))
     return render_template("new_word.html")
@@ -45,6 +45,10 @@ def save_word():
 @app.route("/new_user")
 def new_user():
    return render_template("New_User.html")
+
+@app.route("/login")
+def login():
+   return render_template("login.html")
 
 @app.route("/new_user/create", methods = ['POST'])
 def new_user_create():

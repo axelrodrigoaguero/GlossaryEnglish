@@ -1,9 +1,8 @@
 
 *{
-   font-family: 'kidsfun', sans-serif;
-    font-size: 20px;
-    
-}
+   font-family: 'Spicy Potatos', sans-serif;
+    font-size: 25px;
+
 
 /* barra de navegacion */
 
@@ -11,7 +10,7 @@
     background-color: #8EBCB8;
     padding: 10px 0;
     height: 90px;
-    font-family: 'kidsfun', sans-serif;
+    font-family: 'Spicy Potatos', sans-serif;
   }
 
   .nav-list {
@@ -39,9 +38,9 @@
   }
 
   
-  /*Formulario de Nueva Palabra*/
+/*Formulario de Nueva Palabra*/
 
-  .row .card {
+ .card_word_new {
     background-color: #8EBCB8;
     padding: 20px;
     border-radius: 10px;
@@ -54,19 +53,19 @@
     margin-left: 500px;
   }
 
-  .row .form {
+ .form {
     display: flex;
     flex-direction: column;
   }
 
-  .row .form-input {
+.form-input {
     margin-bottom: 10px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
   }
 
-  .row .form-button {
+.form-button {
     background-color: #00a2ff;
     color: white;
     border: none;
@@ -76,13 +75,96 @@
     transition: transform 0.3s ease;
   }
 
-  .row .form-button:hover {
+.form-button:hover {
     transform: scale(1.1);
   }
 
+/*Login*/
+
+.card_login {
+    background-color: #8EBCB8;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    max-height: 480px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 50px;
+    margin-left: 500px;
+  }
+
+.form {
+    display: flex;
+    flex-direction: column;
+  }
+
+.form-input {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+.form-button {
+    background-color: #00a2ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+.form-button:hover {
+    transform: scale(1.1);
+  }
+/*Formulario de Nuevo Usuario*/
+
+.card_user_new {
+    background-color: #8EBCB8;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    max-height: 480px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 50px;
+    margin-left: 500px;
+  }
+
+ .form {
+    display: flex;
+    flex-direction: column;
+  }
+
+.form-input {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+.form-button {
+    margin-top: 10px;
+    background-color: #00a2ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+.form-button:hover {
+    transform: scale(1.1);
+  }
+
+
     /*Listado Palabra*/
 
-    .row .card_w {
+    .card_w {
       display: inline-block;
       background-color: #B76259;
       border-radius: 10px;

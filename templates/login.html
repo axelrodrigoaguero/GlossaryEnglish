@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block contenido %}
+
+    <div class="card_login">
+      <h2>Login!</h2>
+      <form class="form" method="POST" action="/save_word">
+        <input class="form-input" type="text" placeholder="Email" name="word" id="email">
+        <input class="form-input" type="text" placeholder="Password" name="spanish" id="password">
+
+        <button class="form-button" type="submit">Login</button>
+      </form>
+    </div>
+
+{% endblock %}
