@@ -1,6 +1,6 @@
 
 *{
-    font-family: 'Nunito', sans-serif;
+   font-family: 'kidsfun', sans-serif;
     font-size: 20px;
     
 }
@@ -8,9 +8,10 @@
 /* barra de navegacion */
 
 .navbar {
-    background-color: #00a2ff;
+    background-color: #8EBCB8;
     padding: 10px 0;
     height: 90px;
+    font-family: 'kidsfun', sans-serif;
   }
 
   .nav-list {
@@ -41,7 +42,7 @@
   /*Formulario de Nueva Palabra*/
 
   .row .card {
-    background-color: #3ad4fa;
+    background-color: #8EBCB8;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
@@ -83,7 +84,7 @@
 
     .row .card_w {
       display: inline-block;
-      background-color: #3ad4fa;
+      background-color: #B76259;
       border-radius: 10px;
       width: 350px;
       height: 200px;
