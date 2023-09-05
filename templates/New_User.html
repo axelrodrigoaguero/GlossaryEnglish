@@ -6,49 +6,21 @@
 
 <body>
 
-<div class="row" style="background-image:url('../static/imagen/fondocolor..jpeg');   background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;  height: 800px;
- " >
 
-
-    <div class="card text-bg-info mb-3" style=" width: 400px; height: 450px; margin-top: 100px; margin-left: 500px;">
-      <div  class="card-header"><h2 style="margin-left: 0px;">New User</h2></div>
-        <div class="card-body">
-            <form action="/new_user/create" method="POST">
-
-
-                <div class="form-group">
-                    <label for="firstname">First Name:</label>
-                    <input type="text" class="form-control" name="firstname" placeholder="Name" id="firstname"/>
-
-
-                    <label for="exampleInputEmail1">Email </label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                       placeholder="Enter email"/>
-
-                    <label for="cellphone">Cell Phone:</label>
-                    <input type="text" class="form-control" name="cell_phone" placeholder="Cell Phone" id="cellphone"/>
-
-
-                    <label for="teacher or student">Choose a Roll:</label>
+<div class="card_user_new">
+      <h2>New User!</h2>
+      <form class="form" method="POST" action="/save_word">
+        <input class="form-input" type="text" placeholder="Name" name="firstname" id="firstname">
+        <input class="form-input" type="text" placeholder="Enter emai" name="email" id="email">
+        <input class="form-input" type="text" placeholder="Cell Phone" name="cell_phone" id="cellphone">
+          <label for="teacher or student">Choose a Roll:</label>
                     <select name="teacher_or_student" id="teacher or student" style="margin-top: 5px">
                         <option value="STUDENT">student</option>
                         <option value="TEACHER">teacher</option>
                     </select>
-                </div>
-
-                <button type="submit" class="btn btn-warning" style="margin-top: 5px"> Create</button>
-            </form>
-        </div>
-      </div>
+        <button class="form-button" type="submit">Check In</button>
+      </form>
     </div>
-
-
-
-
-
-</div>
 </body>
 
 

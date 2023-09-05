@@ -11,12 +11,8 @@
  {%endfor%}
 {%endif%}
 {%endwith%}
-<div class="row" style="background-image:url('../static/imagen/fondocolor..jpeg');   background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;  height: 800px;
- " >
 
-    <div class="card">
+    <div class="card_word_new">
       <h2>New word!</h2>
       <form class="form" method="POST" action="/save_word">
         <input class="form-input" type="text" placeholder="Word" name="word" id="word">
@@ -26,27 +22,5 @@
         <button class="form-button" type="submit">Save Word</button>
       </form>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
 
 {% endblock %}

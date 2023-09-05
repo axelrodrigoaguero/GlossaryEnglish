@@ -12,10 +12,6 @@
 {%endif%}
 {%endwith%}
 
-<div class="row" style="background-image:url('../static/imagen/fondocolor..jpeg');   background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;  height: 800px;
- " >
   {% for word in words %}
     <div class="card_w" >       
       <h5 class="card-title">{{word[1]}}</h5>
@@ -24,5 +20,5 @@
       <a href="/delete_word/{{word.0}}" class="btn btn-danger">Delete</a>      
     </div>
   {% endfor %}
-</div>
+
 {% endblock %}
