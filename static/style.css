@@ -2,42 +2,84 @@
 *{
    font-family: 'Spicy Potatos', sans-serif;
     font-size: 25px;
+}
 
 
 /* barra de navegacion */
 
-.navbar {
+.header{
     background-color: #8EBCB8;
-    padding: 10px 0;
-    height: 90px;
-    font-family: 'Spicy Potatos', sans-serif;
-  }
-
-  .nav-list {
-    list-style-type: none;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    padding: 0;
-  }
 
-  .nav-item {
-    margin: 0 15px;
-    transition: transform 0.3s ease, font-size 0.3s ease;
-  }
+    height: 85px;
+    padding: 5px 10%;
+}
 
-  .nav-item a {
+.header .nav-links{
+    list-style: none;
+}
+
+.header .nav-links li{
+    display: inline-block;
+    padding: 10px;
+    transition: all 0.3s ease 0s;
+}
+
+.header .nav-links li:hover{
+    transform:scale(1.1);
+}
+
+.header .nav-links a{
+    font-size: 700;
+    color: #000000;
     text-decoration: none;
-    color: rgb(0, 0, 0);
-  }
+    transition: all 0.3s ease 0s;
+}
 
-  .nav-item:hover {
-    transform: scale(1.2);
-    font-size: 18px;
-  }
+.header .nav-links li a:hover{
+    color: #E1D08B;
+}
 
-  
+/*Barra de Navegacion Boton Login*/
+
+.header .btn_Login button{
+    font-weight: 700;
+    color: #000000;
+    padding: 9px 10px;
+    background: #B76259;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+
+    transition: all 0.3s ease 0s;
+}
+
+.header .btn_Login button:hover{
+    background-color: #B23F33;
+    color: #E1D08B;
+    transform: scale(1.1);
+}
+
+/*Barra de Navegacion Boton Check In*/
+
+.header .btn_check_in button{
+    font-weight: 700;
+    color: #000000;
+    padding: 9px 10px;
+    background: #B76259;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: all 0.3s ease 0s;
+}
+
+.header .btn_check_in button:hover{
+    background-color: #B23F33;
+    color: #E1D08B;
+    transform: scale(1.1);
+}
+
 /*Formulario de Nueva Palabra*/
 
  .card_word_new {
@@ -65,17 +107,21 @@
     border-radius: 5px;
   }
 
-.form-button {
-    background-color: #00a2ff;
-    color: white;
+.button {
+    font-weight: 700;
+    color: #000000;
+    padding: 9px 10px;
+    background: #5CE1E6;
     border: none;
-    border-radius: 5px;
-    padding: 10px;
+    border-radius: 25px;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    margin-left: 10px;
+    transition: all 0.3s ease 0s;
   }
 
-.form-button:hover {
+.button:hover {
+    background-color: #369EA2;
+    color: #E1D08B;
     transform: scale(1.1);
   }
 
@@ -106,19 +152,25 @@
     border-radius: 5px;
   }
 
-.form-button {
-    background-color: #00a2ff;
-    color: white;
+.button {
+    font-weight: 700;
+    color: #000000;
+    padding: 9px 10px;
+    background: #5CE1E6;
     border: none;
-    border-radius: 5px;
-    padding: 10px;
+    border-radius: 25px;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    margin-left: 10px;
+    transition: all 0.3s ease 0s;
   }
 
-.form-button:hover {
+.button:hover {
+    background-color: #369EA2;
+    color: #E1D08B;
     transform: scale(1.1);
   }
+
+
 /*Formulario de Nuevo Usuario*/
 
 .card_user_new {
@@ -146,18 +198,22 @@
     border-radius: 5px;
   }
 
-.form-button {
-    margin-top: 10px;
-    background-color: #00a2ff;
-    color: white;
+.button {
+    font-weight: 700;
+    color: #000000;
+    padding: 9px 10px;
+    background: #5CE1E6;
     border: none;
-    border-radius: 5px;
-    padding: 10px;
+    border-radius: 25px;
     cursor: pointer;
-    transition: transform 0.3s ease;
+    margin-left: 10px;
+    margin-top: 30px;
+    transition: all 0.3s ease 0s;
   }
 
-.form-button:hover {
+.button:hover {
+    background-color: #369EA2;
+    color: #E1D08B;
     transform: scale(1.1);
   }
 

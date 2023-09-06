@@ -20,17 +20,20 @@
 
 <body>
 
+<header class="header">
+    <nav>
+        <ul class="nav-links">
+            <li><a href="/">Glossary</a></li>
+            <li><a href="/new_word">New Word</a></li>
+            <li><a href="/my_words">My Words</a></li>
+        </ul>
+    </nav>
+    <a href="/login" class="btn_Login"><button>Login</button></a>
+    <a href="/new_user" class="btn_check_in"><button>Check In</button></a>
+</header>
 
 
-<nav class="navbar">
-  <ul class="nav-list">
-    <li class="nav-item"><a href="/">Glossary</a></li>
-    <li class="nav-item"><a href="/new_word">New Word</a></li>
-    <li class="nav-item"><a href="/my_words">My Words</a></li>
-    <li class="nav-item"><a href="/new_user">New User</a></li>
-    <li class="nav-item"><a href="/login">Login</a></li>
-  </ul>
-</nav>
+
 
 
  {% block contenido %}
