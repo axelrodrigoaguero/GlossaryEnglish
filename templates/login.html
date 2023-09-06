@@ -1,12 +1,22 @@
 {% extends "layout.html" %}
 
 {% block contenido %}
+{% with messages= get_flashed_messages() %}
+{%if messages%}
+ {%for message in messages%}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>{{message}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+ {%endfor%}
+{%endif%}
+{%endwith%}
 
     <div class="card_login">
       <h2>Login!</h2>
-      <form class="form" method="POST" action="/save_word">
-        <input class="form-input" type="text" placeholder="Email" name="word" id="email">
-        <input class="form-input" type="text" placeholder="Password" name="spanish" id="password">
+      <form class="form" method="POST" action="/logeo">
+        <input class="form-input" type="text" placeholder="Email" name="email" id="email">
+        <input class="form-input" type="text" placeholder="Password" name="password" id="password">
 
         <button class="button" type="submit">Login</button>
       </form>
