@@ -19,7 +19,7 @@ class DBAccess:
         return self.cursor.lastrowid
 
     def agregar_usuario(self, last_name, email, password, teacher_or_student):
-        sql = f'INSERT INTO usuario(last_name ,email, password, teacher_or_student) VALUES ("{last_name}","{email}","{password}","{teacher_or_student}")'
+        sql = f'INSERT INTO usuario(last_name ,email, password, id_rol) VALUES ("{last_name}","{email}","{password}","{teacher_or_student}")'
         self.cursor.execute(sql)
         self.con.commit()
 
@@ -53,3 +53,8 @@ class DBAccess:
         self.cursor.execute("SELECT * FROM significado")
         self.con.commit()
         return self.cursor.fetchall()
+
+    def get_email_password(self, correo, contraseña):
+        self.cursor.execute(f"SELECT * FROM usuario WHERE email ='{correo}' AND password ='{contraseña}'")
+        self.con.commit()
+        return self.cursor.fetchone()

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, flash
+from flask import Flask, render_template, request, url_for, flash, Response, session
 import sqlite3
 
 from model.DBAccess import DBAccess
@@ -46,9 +46,7 @@ def save_word():
 def new_user():
    return render_template("New_User.html")
 
-@app.route("/login")
-def login():
-   return render_template("login.html")
+
 
 @app.route("/new_user/create", methods = ['POST'])
 def new_user_create():
@@ -59,9 +57,38 @@ def new_user_create():
         password = request.values.get("password")
         teacher_or_student = request.values.get("teacher_or_student")
         nuevo_id = db.agregar_usuario(name, email, password,teacher_or_student)
+        flash("User Saved")
         return app.redirect(url_for("new_user"))
 
     return "ok"
+
+@app.route("/login")
+def login():
+    return render_template("login.html")
+
+@app.route("/logeo", methods = ['GET','POST'])
+def logeo():
+    if request.method == "POST" and 'email' in request.form and 'password':
+        email= request.form['email']
+        password = request.form['password']
+        db = DBAccess("database/glosario.db")
+        account= db.get_email_password(email,password)
+        if account:
+            session['logueado'] = True
+            session['id'] = account[0]
+            session['id_rol'] = account[4]
+
+            if session['id_rol'] == 2:
+                return render_template("teacher.html")
+            elif session['id_rol'] == 1:
+                return render_template("student.html")
+        else:
+            flash("Email of Password Invalid")
+            return render_template("login.html")
+
+    return render_template("login.html")
+
+
 
 @app.route("/show_word/<id>")
 def show_word(id):

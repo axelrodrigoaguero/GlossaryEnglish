@@ -2,7 +2,16 @@
 {% extends "layout.html" %}
 
 {% block contenido %}
-
+{% with messages= get_flashed_messages() %}
+{%if messages%}
+ {%for message in messages%}
+    <div class="alert alert-success alert-dismissible fade show" role="alert" >
+    <strong>{{message}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+ {%endfor%}
+{%endif%}
+{%endwith%}
 
 <body>
 
@@ -15,8 +24,8 @@
         <input class="form-input" type="text" placeholder="Password" name="password" id="password">
           <label for="teacher or student">Choose a Roll:</label>
                     <select name="teacher_or_student" id="teacher or student" style="margin-top: 5px">
-                        <option value="STUDENT">student</option>
-                        <option value="TEACHER">teacher</option>
+                        <option value="1">student</option>
+                        <option value="2">teacher</option>
                     </select>
         <button class="button" type="submit">Check In</button>
       </form>
