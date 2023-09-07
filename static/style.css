@@ -7,14 +7,9 @@
     font-size: 25px;
 }
 
-body {
-    background-image: url('img/img_fondo.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-body {
-    background-color: #EFEFEF;
+img {
+            width: 100%;
+            height: auto;
 }
 
 /* barra de navegacion */
