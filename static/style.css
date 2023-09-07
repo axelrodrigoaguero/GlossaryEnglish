@@ -217,14 +217,26 @@
   }
 
 
-    /*Listado Palabra*/
+/*Listado Palabra*/
 
-    .card_w {
-      display: inline-block;
-      background-color: #B76259;
-      border-radius: 10px;
-      width: 350px;
-      height: 200px;
-      margin: 30px;
-      padding: 10px;
-    }
+.card_words {
+    display: inline-block;
+    background-color: #FFCC00;
+    border-radius: 10px;
+    width: 350px;
+    height: 200px;
+    margin: 30px;
+    padding: 10px;
+}
+
+/*Ver una Palabra*/
+
+.card_word {
+    display: inline-block;
+    background-color: #FFCC00;
+    border-radius: 10px;
+    width:1000px;
+    height: 400px;
+    margin: 30px;
+    padding: 10px;
+}
