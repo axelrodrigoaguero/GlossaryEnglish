@@ -73,6 +73,14 @@ def logeo():
 
     return render_template("login.html")
 
+#Funcion Cerrar Session
+
+@app.route('/logout')
+def logout():
+
+    session.clear()
+    return redirect(url_for('login'))
+
 #Pagina Listado de Palabras
 
 @app.route("/my_words")

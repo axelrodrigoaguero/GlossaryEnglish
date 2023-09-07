@@ -64,3 +64,4 @@ class DBAccess:
         self.cursor.execute(f"SELECT * FROM usuario WHERE email ='{correo}' AND password ='{contrasena}'")
         self.con.commit()
         return self.cursor.fetchone()
+
