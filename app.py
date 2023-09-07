@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, flash, Response, session
+from flask import Flask, render_template, request, url_for, flash, session, redirect
 import sqlite3
 
 from model.DBAccess import DBAccess
@@ -14,18 +14,15 @@ app.secret_key= 'mysecertkey'
 def inicio():
     return render_template("home.html")
 
-
-@app.route("/new_word")
-def new_word():
-    return render_template("new_word.html")
-
-
 @app.route("/my_words")
 def my_words():
     db = DBAccess("database/glosario.db")
     words = db.load_all_palabra()
     return render_template("my_words.html",words=words)
 
+@app.route("/new_word")
+def new_word():
+    return render_template("new_word.html")
 
 @app.route("/save_word", methods = ['POST'])
 def save_word():
@@ -33,6 +30,9 @@ def save_word():
         db = DBAccess("database/glosario.db")
         word = request.values.get("word")
         spanish = request.values.get("spanish")
+        if not word or not spanish:
+            flash("All fields are required. Please fill them all out.")
+            return redirect(url_for("new_word"))
         nuevo_id = db.agregar_palabra(spanish,word,1,"pendiente")
         meaning= request.values.get("meaning")
         spanish_meaning = request.values.get("spanish_meaning")
@@ -56,6 +56,11 @@ def new_user_create():
         email = request.values.get("email")
         password = request.values.get("password")
         teacher_or_student = request.values.get("teacher_or_student")
+
+        if not name or not email or not password or not teacher_or_student :
+            flash("All fields are required. Please fill them all out.")
+            return redirect(url_for("new_user"))
+
         nuevo_id = db.agregar_usuario(name, email, password,teacher_or_student)
         flash("User Saved")
         return app.redirect(url_for("new_user"))

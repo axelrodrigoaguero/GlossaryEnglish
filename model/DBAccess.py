@@ -54,7 +54,7 @@ class DBAccess:
         self.con.commit()
         return self.cursor.fetchall()
 
-    def get_email_password(self, correo, contraseña):
-        self.cursor.execute(f"SELECT * FROM usuario WHERE email ='{correo}' AND password ='{contraseña}'")
+    def get_email_password(self, correo, contrasena):
+        self.cursor.execute(f"SELECT * FROM usuario WHERE email ='{correo}' AND password ='{contrasena}'")
         self.con.commit()
         return self.cursor.fetchone()
