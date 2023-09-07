@@ -7,7 +7,13 @@ class DBAccess:
 
 
     def view_word(self, id):
-        sql= f"SELECT * FROM palabra where id={id};"
+        sql= f"SELECT * FROM palabra WHERE id= {id}"
+        self.cursor.execute(sql)
+        self.con.commit()
+        return self.cursor.fetchone()
+
+    def view_meaning(self, id_palabra):
+        sql= f"SELECT * FROM significado WHERE id_palabra={id_palabra}"
         self.cursor.execute(sql)
         self.con.commit()
         return self.cursor.fetchone()

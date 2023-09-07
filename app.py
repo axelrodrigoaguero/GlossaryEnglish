@@ -10,45 +10,21 @@ app = Flask(__name__)
 
 app.secret_key= 'mysecertkey'
 
+#Pagina Principal
 @app.route("/")
 def inicio():
+
     return render_template("home.html")
 
-@app.route("/my_words")
-def my_words():
-    db = DBAccess("database/glosario.db")
-    words = db.load_all_palabra()
-    return render_template("my_words.html",words=words)
-
-@app.route("/new_word")
-def new_word():
-    return render_template("new_word.html")
-
-@app.route("/save_word", methods = ['POST'])
-def save_word():
-    if request.method == "POST":
-        db = DBAccess("database/glosario.db")
-        word = request.values.get("word")
-        spanish = request.values.get("spanish")
-        if not word or not spanish:
-            flash("All fields are required. Please fill them all out.")
-            return redirect(url_for("new_word"))
-        nuevo_id = db.agregar_palabra(spanish,word,1,"pendiente")
-        meaning= request.values.get("meaning")
-        spanish_meaning = request.values.get("spanish_meaning")
-        nuevo_id = db.agregar_significado(meaning, spanish_meaning,  nuevo_id)
-        flash("Word Saved")
-        return app.redirect(url_for("new_word"))
-    return render_template("new_word.html")
-
-
+#Pagina Formulario Nuevo Usuario
 @app.route("/new_user")
 def new_user():
-   return render_template("New_User.html")
 
+   return render_template("new_user.html")
 
+#Funcion de Guardar Nuevo Usuario
 
-@app.route("/new_user/create", methods = ['POST'])
+@app.route("/check_in", methods = ['POST'])
 def new_user_create():
     if request.method == "POST":
         db = DBAccess("database/glosario.db")
@@ -65,11 +41,15 @@ def new_user_create():
         flash("User Saved")
         return app.redirect(url_for("new_user"))
 
-    return "ok"
+    return app.redirect(url_for("new_user"))
+
+#Pagina de Inicio de Session
 
 @app.route("/login")
 def login():
     return render_template("login.html")
+
+#Funcion Iniciar Session
 
 @app.route("/logeo", methods = ['GET','POST'])
 def logeo():
@@ -93,14 +73,49 @@ def logeo():
 
     return render_template("login.html")
 
+#Pagina Listado de Palabras
 
+@app.route("/my_words")
+def my_words():
+    db = DBAccess("database/glosario.db")
+    words = db.load_all_palabra()
+    return render_template("my_words.html",words=words)
+
+#Pagina Ver una palabra
 
 @app.route("/show_word/<id>")
 def show_word(id):
     db = DBAccess("database/glosario.db")
     word= db.view_word(int(id))
-    return render_template("show_word.html", word= word)
+    meaning= db.view_meaning(int(id))
+    return render_template("show_word.html", word= word, meaning= meaning)
 
+#Pagina de Formulario Nueva Palabra
+
+@app.route("/new_word")
+def new_word():
+    return render_template("new_word.html")
+
+#Funcion de Guardar Nueva Palabra
+
+@app.route("/save_word", methods = ['POST'])
+def save_word():
+    if request.method == "POST":
+        db = DBAccess("database/glosario.db")
+        word = request.values.get("word")
+        spanish = request.values.get("spanish")
+        if not word or not spanish:
+            flash("All fields are required. Please fill them all out.")
+            return redirect(url_for("new_word"))
+        nuevo_id = db.agregar_palabra(spanish,word,1,"pendiente")
+        meaning= request.values.get("meaning")
+        spanish_meaning = request.values.get("spanish_meaning")
+        nuevo_id = db.agregar_significado(meaning, spanish_meaning,  nuevo_id)
+        flash("Word Saved")
+        return app.redirect(url_for("new_word"))
+    return render_template("new_word.html")
+
+#Funcion Eliminar Palabra
 
 @app.route('/delete_word/<string:id>')
 def delete_word(id):
