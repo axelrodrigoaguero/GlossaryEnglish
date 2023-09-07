@@ -24,13 +24,19 @@
     <nav>
         <ul class="nav-links">
             <li><a href="/">Glossary</a></li>
-            <li><a href="/new_word">New Word</a></li>
-            <li><a href="/my_words">My Words</a></li>
+            <li><a href="/my_words">Words</a></li>
+            {% if 'logueado' in session %}
+                <li><a href="/new_word">New Word</a></li>
+            {% endif %}
         </ul>
     </nav>
     <div class="btns-container">
-        <a href="/login" class="btn_Login"><button>Login</button></a>
-        <a href="/new_user" class="btn_check_in"><button>Check In</button></a>
+        {% if 'logueado' in session %}
+            <a href="/logout" class="btn_Logout"><button>Logout</button></a>
+        {% else %}
+            <a href="/login" class="btn_Login"><button>Login</button></a>
+            <a href="/new_user" class="btn_check_in"><button>Check In</button></a>
+        {% endif %}
     </div>
 </header>
 

@@ -56,7 +56,8 @@ img {
 }
 
 .header .btn_Login button,
-.header .btn_check_in button {
+.header .btn_check_in button,
+ .header .btn_Logout button{
     font-weight: 700;
     color: #000000;
     padding: 9px 10px;
@@ -69,7 +70,8 @@ img {
 }
 
 .header .btn_Login button:hover,
-.header .btn_check_in button:hover {
+.header .btn_check_in button:hover,
+ .header .btn_Logout button:hover {
     background-color: #D6AB00;
     color: #000000;
     transform: scale(1.1);
