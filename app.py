@@ -63,10 +63,9 @@ def logeo():
             session['id'] = account[0]
             session['id_rol'] = account[4]
 
-            if session['id_rol'] == 2:
-                return render_template("home.html")
-            elif session['id_rol'] == 1:
-                return render_template("home.html")
+
+            return render_template("home.html")
+
         else:
             flash("Email of Password Invalid")
             return render_template("login.html")
@@ -77,7 +76,6 @@ def logeo():
 
 @app.route('/logout')
 def logout():
-
     session.clear()
     return redirect(url_for('login'))
 
@@ -85,9 +83,27 @@ def logout():
 
 @app.route("/my_words")
 def my_words():
+
+    if 'logueado' not in session :
+        flash("Debe iniciar sesión para acceder a esta página.")
+        return redirect(url_for("login"))
+
+
+    id_rol = session.get('id_rol')
+
     db = DBAccess("database/glosario.db")
-    words = db.load_all_palabra()
-    return render_template("my_words.html",words=words)
+
+
+    if id_rol == 1 :
+        words= db.load_words_by_state("pendiente")
+        return render_template("my_words.html", words_rol_teacher=words)
+    elif id_rol == 2 :
+        user_id = session.get('id')
+        words = db.load_words_by_user(int(user_id))
+        return render_template("my_words.html", words=words)
+    else :
+        words= db.load_words_by_state("confirmada")
+        return render_template("my_words.html", words=words)
 
 #Pagina Ver una palabra
 
