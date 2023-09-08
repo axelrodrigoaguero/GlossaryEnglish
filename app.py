@@ -84,9 +84,7 @@ def logout():
 @app.route("/my_words")
 def my_words():
 
-    if 'logueado' not in session :
-        flash("Debe iniciar sesión para acceder a esta página.")
-        return redirect(url_for("login"))
+
 
 
     id_rol = session.get('id_rol')
@@ -96,7 +94,7 @@ def my_words():
 
     if id_rol == 1 :
         words= db.load_words_by_state("pendiente")
-        return render_template("my_words.html", words_rol_teacher=words)
+        return render_template("my_words.html", words=words)
     elif id_rol == 2 :
         user_id = session.get('id')
         words = db.load_words_by_user(int(user_id))
