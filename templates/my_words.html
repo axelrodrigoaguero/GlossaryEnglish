@@ -17,7 +17,11 @@
       <h5 class="card-title">{{word[1]}}</h5>
       <p class="card-text">{{word[2]}}</p>
       <a href="/show_word/{{word.0}}" class="btn btn-primary">View</a>
-      <a href="/delete_word/{{word.0}}" class="btn btn-danger">Delete</a>      
+      {% if 'logueado' in session %}
+        {% if session['id_rol'] == 2 %}
+            <a href="/delete_word/{{word.0}}" class="btn btn-danger">Delete</a>
+        {% endif %}
+      {% endif %}
     </div>
   {% endfor %}
 

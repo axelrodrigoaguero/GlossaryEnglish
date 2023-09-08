@@ -26,10 +26,20 @@
     <nav>
         <ul class="nav-links">
             <li><a href="/">Glossary</a></li>
-            <li><a href="/my_words">Words</a></li>
             {% if 'logueado' in session %}
-                <li><a href="/new_word">New Word</a></li>
+                {% if session['id_rol'] == 1 %}
+                    <li><a href="/my_words">Pending Words</a></li>
+                {% elif session['id_rol'] == 2 %}
+                    <li><a href="/my_words">Words</a></li>
+                {% endif %}
+
+                {% if 'logueado' in session %}
+                    <li><a href="/new_word">New Word</a></li>
+                {% endif %}
+            {% else %}
+                <li><a href="/my_words">Words</a></li>
             {% endif %}
+
         </ul>
     </nav>
     <div class="btns-container">

@@ -2,13 +2,61 @@
 
 {% block contenido %}
 <body>
-      <div class="card_word" >
-            <h1>Word: {{word[1]}}</h1>
-            <h4>Word in Spanish: {{word[2]}}</h4>
 
-            <p>Meaning: {{meaning[1]}}</p>
-            <p>Meaning in Spanish: {{meaning[3]}}</p>
-      </div>
+      <h1 class="title_show">{{word[1]}}</h1>
+      <h3 class="title_show">{{word[2]}}</h3>
+
+      {% if 'logueado' in session %}
+            {% if session['id_rol'] == 2 %}
+
+            {% endif %}
+      {% endif %}
+
+      <table class="table_show_word" border>
+            <thead>
+                  <tr>
+                        <th>Meanings</th>
+                        <th>Meanings in Spanish</th>
+                        {% if 'logueado' in session %}
+                              {% if session['id_rol'] == 2 %}
+                                    <th>Operations</th>
+                              {% endif %}
+                        {% endif %}
+
+                  </tr>
+            </thead>
+            <tbody>
+                  <tr>
+                        <td>{{meaning[1]}}</td>
+                        <td>{{meaning[3]}}</td>
+                        <td>
+                              {% if session['id_rol'] == 2 %}
+                                    <div class="horizontal-buttons">
+                                          <a href="/update_meaning" class="btn_update_meaning"><button>Update Meaning</button></a>
+                                          <a href="/delete_meaning/{{meaning.0}}" class="btn_delete_meaning"><button>Delete Meaning</button></a>
+                                    </div>
+                              {% endif %}
+                              <br>
+                        </td>
+                  </tr>
+            </tbody>
+            <tfoot>
+                  <tr>
+                        <td colspan="3">Total of meanings:</td>
+                  </tr>
+            </tfoot>
+      </table>
+
+      {% if 'logueado' in session %}
+            {% if session['id_rol'] == 2 %}
+                  <div class="centered-buttons">
+                        <a href="/update_word/{{word.0}}" class="btn_update_word"><button>Update Word</button></a>
+                        <a href="/add_meaning/{{word.0}}" class="btn_add_meaning"><button>Add Meaning</button></a>
+                  </div>
+            {% elif session['id_rol'] == 1 %}
+                  <a href="/confirm" class="btn_confirm_word"><button>Confirmed Word</button></a>
+            {% endif %}
+      {% endif %}
 </body>
 
 
