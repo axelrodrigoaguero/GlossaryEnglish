@@ -50,6 +50,11 @@ class DBAccess:
         self.cursor.execute(sql)
         self.con.commit()
 
+    def get_email_password(self, correo, contrasena):
+        self.cursor.execute(f"SELECT * FROM usuario WHERE email ='{correo}' AND password ='{contrasena}'")
+        self.con.commit()
+        return self.cursor.fetchone()
+
     def load_all_palabra(self):
         self.cursor.execute("SELECT * FROM palabra")
         self.con.commit()
@@ -59,11 +64,6 @@ class DBAccess:
         self.cursor.execute("SELECT * FROM significado")
         self.con.commit()
         return self.cursor.fetchall()
-
-    def get_email_password(self, correo, contrasena):
-        self.cursor.execute(f"SELECT * FROM usuario WHERE email ='{correo}' AND password ='{contrasena}'")
-        self.con.commit()
-        return self.cursor.fetchone()
 
     def load_words_by_state(self, state) :
         self.cursor.execute("SELECT * FROM palabra WHERE state = ?", (state,))

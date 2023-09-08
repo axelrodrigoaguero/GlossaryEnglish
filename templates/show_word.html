@@ -1,8 +1,17 @@
 {% extends "layout.html" %}
 
 {% block contenido %}
+{% with messages= get_flashed_messages() %}
+{%if messages%}
+ {%for message in messages%}
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+    <strong>{{message}}</strong>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+ {%endfor%}
+{%endif%}
+{%endwith%}
 <body>
-
       <h1 class="title_show">{{word[1]}}</h1>
       <h3 class="title_show">{{word[2]}}</h3>
 
@@ -34,7 +43,7 @@
                               {% if session['id_rol'] == 2 %}
                                     <div class="horizontal-buttons">
                                           <a href="/update_meaning" class="btn_update_meaning"><button>Update Meaning</button></a>
-                                          <a href="/delete_meaning/{{meaning.0}}" class="btn_delete_meaning"><button>Delete Meaning</button></a>
+                                          <a href="/delete_meaning/{{meaning.0}}/{{word.0}}" class="btn_delete_meaning"><button>Delete Meaning</button></a>
                                     </div>
                               {% endif %}
                               <br>

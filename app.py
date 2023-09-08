@@ -144,11 +144,25 @@ def delete_word(id):
     words = db.load_all_palabra()
     return render_template("my_words.html",words=words)
 
+#Funcion Eliminar Significado
+
+@app.route("/delete_meaning/<string:id>/<id_word>")
+def delete_meaning(id,id_word):
+    db = DBAccess("database/glosario.db")
+    db.delete_significado(id)
+    flash("Delete Meaning")
+    word = db.view_word(int(id_word))
+    meanings = db.view_meaning(int(id_word))
+    return render_template("show_word.html", word=word, meanings=meanings)
+
+
 #Pagina de Formulario Nuevo Significado
 @app.route('/add_meaning/<string:id>')
 def add_meaning(id):
     id= int(id)
     return render_template("add_new_meaning.html",id= id)
+
+#Funcion de Guardar Nuevo Significado
 
 @app.route('/new_meaning/<string:id>', methods = ['POST'])
 def new_meaning(id):
@@ -162,7 +176,9 @@ def new_meaning(id):
             flash("All fields are required. Please fill them all out.")
             return redirect(url_for("new_word"))
         db.agregar_significado(meaning, spanish_meaning, id)
-        return app.redirect(url_for("my_words"))
-
+        flash("Save Meaning")
+        word = db.view_word(int(id))
+        meanings = db.view_meaning(int(id))
+        return render_template("show_word.html", word=word, meanings=meanings)
 
 app.run(debug=True)
