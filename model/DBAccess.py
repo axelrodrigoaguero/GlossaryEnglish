@@ -65,3 +65,10 @@ class DBAccess:
         self.con.commit()
         return self.cursor.fetchone()
 
+    def load_words_by_state(self, state) :
+        self.cursor.execute("SELECT * FROM palabra WHERE state = ?", (state,))
+        return self.cursor.fetchall()
+
+    def load_words_by_user(self, user_id) :
+        self.cursor.execute("SELECT * FROM palabra WHERE id_usuario = ?", (user_id,))
+        return self.cursor.fetchall()

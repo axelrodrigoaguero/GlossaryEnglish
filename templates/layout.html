@@ -35,9 +35,9 @@
     <div class="btns-container">
         {% if 'logueado' in session %}
             <a href="/logout" class="btn_Logout"><button>Logout</button></a>
-            {% if session['id_rol'] == 2 %}
+            {% if session['id_rol'] == 1 %}
                 <p >Teacher</p>
-            {% elif session['id_rol'] == 1 %}
+            {% elif session['id_rol'] == 2 %}
                 <p>Student</p>
             {% endif %}
         {% else %}
