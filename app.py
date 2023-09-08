@@ -64,9 +64,9 @@ def logeo():
             session['id_rol'] = account[4]
 
             if session['id_rol'] == 2:
-                return render_template("teacher.html")
+                return render_template("home.html")
             elif session['id_rol'] == 1:
-                return render_template("student.html")
+                return render_template("home.html")
         else:
             flash("Email of Password Invalid")
             return render_template("login.html")

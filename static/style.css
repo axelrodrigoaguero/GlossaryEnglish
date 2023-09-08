@@ -77,6 +77,10 @@ img {
     transform: scale(1.1);
 }
 
+.header p{
+    margin-top: 30px;
+    margin-left: 10px;
+}
 /*Formulario de Nueva Palabra*/
 
  .card_word_new {
