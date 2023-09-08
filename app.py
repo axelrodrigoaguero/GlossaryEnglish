@@ -83,10 +83,6 @@ def logout():
 
 @app.route("/my_words")
 def my_words():
-
-
-
-
     id_rol = session.get('id_rol')
 
     db = DBAccess("database/glosario.db")
@@ -109,8 +105,8 @@ def my_words():
 def show_word(id):
     db = DBAccess("database/glosario.db")
     word= db.view_word(int(id))
-    meaning= db.view_meaning(int(id))
-    return render_template("show_word.html", word= word, meaning= meaning)
+    meanings= db.view_meaning(int(id))
+    return render_template("show_word.html", word= word, meanings= meanings)
 
 #Pagina de Formulario Nueva Palabra
 
@@ -132,7 +128,7 @@ def save_word():
         nuevo_id = db.agregar_palabra(word, spanish,1,"pendiente")
         meaning= request.values.get("meaning")
         spanish_meaning = request.values.get("spanish_meaning")
-        nuevo_id = db.agregar_significado(meaning, spanish_meaning,  nuevo_id)
+        db.agregar_significado(meaning, spanish_meaning,  nuevo_id)
         flash("Word Saved")
         return app.redirect(url_for("new_word"))
     return render_template("new_word.html")
@@ -147,5 +143,26 @@ def delete_word(id):
     flash("Delete Word")
     words = db.load_all_palabra()
     return render_template("my_words.html",words=words)
+
+#Pagina de Formulario Nuevo Significado
+@app.route('/add_meaning/<string:id>')
+def add_meaning(id):
+    id= int(id)
+    return render_template("add_new_meaning.html",id= id)
+
+@app.route('/new_meaning/<string:id>', methods = ['POST'])
+def new_meaning(id):
+    if request.method == "POST" :
+        print(id)
+        db = DBAccess("database/glosario.db")
+        meaning = request.values.get("meaning")
+        spanish_meaning = request.values.get("spanish_meaning")
+
+        if not meaning or not spanish_meaning:
+            flash("All fields are required. Please fill them all out.")
+            return redirect(url_for("new_word"))
+        db.agregar_significado(meaning, spanish_meaning, id)
+        return app.redirect(url_for("my_words"))
+
 
 app.run(debug=True)

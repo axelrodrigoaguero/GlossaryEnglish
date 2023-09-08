@@ -26,6 +26,7 @@
                   </tr>
             </thead>
             <tbody>
+                  {% for meaning in meanings %}
                   <tr>
                         <td>{{meaning[1]}}</td>
                         <td>{{meaning[3]}}</td>
@@ -39,12 +40,8 @@
                               <br>
                         </td>
                   </tr>
+                  {% endfor %}
             </tbody>
-            <tfoot>
-                  <tr>
-                        <td colspan="3">Total of meanings:</td>
-                  </tr>
-            </tfoot>
       </table>
 
       {% if 'logueado' in session %}

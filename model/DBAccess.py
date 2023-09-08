@@ -16,7 +16,7 @@ class DBAccess:
         sql= f"SELECT * FROM significado WHERE id_palabra={id_palabra}"
         self.cursor.execute(sql)
         self.con.commit()
-        return self.cursor.fetchone()
+        return self.cursor.fetchall()
 
     def agregar_palabra(self, eng, esp,  us,sta):
         sql = f'INSERT INTO palabra(english,spanish,id_usuario,state) VALUES ("{eng}","{esp}",{us},"{sta}")'
@@ -72,3 +72,4 @@ class DBAccess:
     def load_words_by_user(self, user_id) :
         self.cursor.execute("SELECT * FROM palabra WHERE id_usuario = ?", (user_id,))
         return self.cursor.fetchall()
+
