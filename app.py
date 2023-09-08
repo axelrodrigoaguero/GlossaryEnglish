@@ -83,6 +83,7 @@ def logout():
 
 @app.route("/my_words")
 def my_words():
+
     id_rol = session.get('id_rol')
 
     db = DBAccess("database/glosario.db")
@@ -124,7 +125,7 @@ def save_word():
         spanish = request.values.get("spanish")
         if not word or not spanish:
             flash("All fields are required. Please fill them all out.")
-            return redirect(url_for("new_word"))
+            return render_template("new_word.html")
         nuevo_id = db.agregar_palabra(word, spanish,1,"pendiente")
         meaning= request.values.get("meaning")
         spanish_meaning = request.values.get("spanish_meaning")
@@ -141,8 +142,19 @@ def delete_word(id):
     db.delete_palabra(id)
     db.delete_significado(id)
     flash("Delete Word")
-    words = db.load_all_palabra()
-    return render_template("my_words.html",words=words)
+
+    id_rol = session.get('id_rol')
+
+    if id_rol == 1 :
+        words = db.load_words_by_state("pendiente")
+        return render_template("my_words.html", words=words)
+    elif id_rol == 2 :
+        user_id = session.get('id')
+        words = db.load_words_by_user(int(user_id))
+        return render_template("my_words.html", words=words)
+    else :
+        words = db.load_words_by_state("confirmada")
+        return render_template("my_words.html", words=words)
 
 #Funcion Eliminar Significado
 
@@ -167,16 +179,73 @@ def add_meaning(id):
 @app.route('/new_meaning/<string:id>', methods = ['POST'])
 def new_meaning(id):
     if request.method == "POST" :
-        print(id)
         db = DBAccess("database/glosario.db")
         meaning = request.values.get("meaning")
         spanish_meaning = request.values.get("spanish_meaning")
 
         if not meaning or not spanish_meaning:
             flash("All fields are required. Please fill them all out.")
-            return redirect(url_for("new_word"))
+            return render_template("add_new_meaning.html",id= id)
         db.agregar_significado(meaning, spanish_meaning, id)
         flash("Save Meaning")
+        word = db.view_word(int(id))
+        meanings = db.view_meaning(int(id))
+        return render_template("show_word.html", word=word, meanings=meanings)
+
+#Pagina de Formulario de Actualizar Significado
+
+@app.route('/up_meaning/<string:id>/<id_word>')
+def up_meaning(id,id_word):
+    id= int(id)
+    id_word= id_word
+
+    return render_template("update_meaning.html",id= id,id_word= id_word)
+
+#Funcion de Actualizar Significado
+
+@app.route('/update_meaning/<string:id>/<id_word>', methods = ['POST'])
+def update_meaning(id,id_word):
+    if request.method == "POST" :
+        db = DBAccess("database/glosario.db")
+        meaning = request.values.get("meaning")
+        spanish_meaning = request.values.get("spanish_meaning")
+
+        word = request.values.get("word")
+        spanish = request.values.get("spanish")
+
+
+
+        if not meaning or not spanish_meaning:
+            flash("All fields are required. Please fill them all out.")
+            return render_template("update_meaning.html",id= id,id_word= id_word)
+
+        db.update_meaning(meaning,spanish_meaning,id)
+        flash("Update Meaning")
+        word = db.view_word(int(id_word))
+        meanings = db.view_meaning(int(id_word))
+        return render_template("show_word.html", word=word, meanings=meanings)
+
+#Pagina de Formulario de Actualizar Palabra
+
+@app.route('/up_word/<string:id>')
+def up_word(id):
+    id= int(id)
+    return render_template("update_word.html",id= id)
+
+#Funcion de Actualizar Palabra
+
+@app.route('/update_word/<string:id>', methods = ['POST'])
+def update_word(id):
+    if request.method == "POST" :
+        db = DBAccess("database/glosario.db")
+        word = request.values.get("word")
+        spanish = request.values.get("spanish")
+        if not word or not spanish:
+            flash("All fields are required. Please fill them all out.")
+            return render_template("update_word.html",id= id)
+
+        db.update_word(word,spanish,id)
+        flash("Update Word")
         word = db.view_word(int(id))
         meanings = db.view_meaning(int(id))
         return render_template("show_word.html", word=word, meanings=meanings)

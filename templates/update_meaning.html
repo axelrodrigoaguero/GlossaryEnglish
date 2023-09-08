@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block contenido %}
+
+<div class="card_word_new">
+      <h2>Update Meaning!</h2>
+      <form class="form" method="POST" action="/update_meaning/{{id}}/{{id_word}}">
+        <input class="form-input_meaning" type="text" placeholder="Meaning" name="meaning" id="meaning">
+        <input class="form-input_spanish_meaning" type="text" placeholder="Spanish Meaning" name="spanish_meaning" id="spanish_meaning">
+        <button class="button" type="submit">Save Meaning</button>
+      </form>
+    </div>
+
+
+
+{% endblock %}
