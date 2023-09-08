@@ -45,7 +45,12 @@ class DBAccess:
         self.cursor.execute(sql)
         self.con.commit()
 
-    def update_palabra(self,en, es, id):
+    def update_word(self,en, es, id):
+        sql = f"UPDATE palabra  SET english = '{en}' , spanish = '{es}' WHERE id={id};"
+        self.cursor.execute(sql)
+        self.con.commit()
+
+    def update_meaning(self,en, es, id):
         sql = f"UPDATE significado  SET english = '{en}' , spanish = '{es}' WHERE id={id};"
         self.cursor.execute(sql)
         self.con.commit()
