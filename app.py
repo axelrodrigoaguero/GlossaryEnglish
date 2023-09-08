@@ -115,7 +115,7 @@ def save_word():
         if not word or not spanish:
             flash("All fields are required. Please fill them all out.")
             return redirect(url_for("new_word"))
-        nuevo_id = db.agregar_palabra(spanish,word,1,"pendiente")
+        nuevo_id = db.agregar_palabra(word, spanish,1,"pendiente")
         meaning= request.values.get("meaning")
         spanish_meaning = request.values.get("spanish_meaning")
         nuevo_id = db.agregar_significado(meaning, spanish_meaning,  nuevo_id)
@@ -129,6 +129,7 @@ def save_word():
 def delete_word(id):
     db = DBAccess("database/glosario.db")
     db.delete_palabra(id)
+    db.delete_significado(id)
     flash("Delete Word")
     words = db.load_all_palabra()
     return render_template("my_words.html",words=words)
