@@ -26,12 +26,7 @@
                   <tr>
                         <th>Meanings</th>
                         <th>Meanings in Spanish</th>
-                        {% if 'logueado' in session %}
-                              {% if session['id_rol'] == 2 %}
-                                    <th>Operations</th>
-                              {% endif %}
-                        {% endif %}
-
+                        <th>Operations</th>
                   </tr>
             </thead>
             <tbody>
@@ -40,12 +35,10 @@
                         <td>{{meaning[1]}}</td>
                         <td>{{meaning[3]}}</td>
                         <td>
-                              {% if session['id_rol'] == 2 %}
-                                    <div class="horizontal-buttons">
-                                          <a href="/up_meaning/{{meaning.0}}/{{word.0}}" class="btn_update_meaning"><button>Update Meaning</button></a>
-                                          <a href="/delete_meaning/{{meaning.0}}/{{word.0}}" class="btn_delete_meaning"><button>Delete Meaning</button></a>
-                                    </div>
-                              {% endif %}
+                              <div class="horizontal-buttons">
+                                    <a href="/up_meaning/{{meaning.0}}/{{word.0}}" class="btn_update_meaning"><button>Update Meaning</button></a>
+                                    <a href="/delete_meaning/{{meaning.0}}/{{word.0}}" class="btn_delete_meaning"><button>Delete Meaning</button></a>
+                              </div>
                               <br>
                         </td>
                   </tr>
@@ -53,16 +46,8 @@
             </tbody>
       </table>
       <div class="centered-buttons">
-      {% if 'logueado' in session %}
-            {% if session['id_rol'] == 2 %}
-
-                        <a href="/up_word/{{word.0}}" class="btn_update_word"><button>Update Word</button></a>
-                        <a href="/add_meaning/{{word.0}}" class="btn_add_meaning"><button>Add Meaning</button></a>
-
-            {% elif session['id_rol'] == 1 %}
-                  <a href="/confirm_word/{{word.0}}" class="btn_confirm_word"><button>Confirmed Word</button></a>
-            {% endif %}
-      {% endif %}
+            <a href="/up_word/{{word.0}}" class="btn_update_word"><button>Update Word</button></a>
+            <a href="/add_meaning/{{word.0}}" class="btn_add_meaning"><button>Add Meaning</button></a>
       </div>
 </body>
 

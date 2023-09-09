@@ -100,6 +100,7 @@ def my_words():
         words= db.load_words_by_state("confirmada")
         return render_template("my_words.html", words=words)
 
+
 #Pagina Ver una palabra
 
 @app.route("/show_word/<id>")
@@ -108,6 +109,23 @@ def show_word(id):
     word= db.view_word(int(id))
     meanings= db.view_meaning(int(id))
     return render_template("show_word.html", word= word, meanings= meanings)
+
+#Pagina Listado de Palabras Confirmadas
+
+@app.route("/my_words_confirm")
+def my_words_confirm():
+    db = DBAccess("database/glosario.db")
+    words = db.load_words_by_state("confirmada")
+    return render_template("my_words_confirm.html", words=words)
+
+#Pagina Ver una Palabra Confirmada
+
+@app.route("/show_word_confirm/<id>")
+def show_word_confirm(id):
+    db = DBAccess("database/glosario.db")
+    word= db.view_word(int(id))
+    meanings= db.view_meaning(int(id))
+    return render_template("show_word_confirm.html", word= word, meanings= meanings)
 
 #Pagina de Formulario Nueva Palabra
 
@@ -249,5 +267,26 @@ def update_word(id):
         word = db.view_word(int(id))
         meanings = db.view_meaning(int(id))
         return render_template("show_word.html", word=word, meanings=meanings)
+
+#Funcion de Confirmar Palabra
+
+@app.route('/confirm_word/<string:id>')
+def confirm_word(id):
+    db = DBAccess("database/glosario.db")
+    estado= "confirmada"
+    db.confirmed_word(id, estado)
+    id_rol = session.get('id_rol')
+
+
+    if id_rol == 1 :
+        words = db.load_words_by_state("pendiente")
+        return render_template("my_words.html", words=words)
+    elif id_rol == 2 :
+        user_id = session.get('id')
+        words = db.load_words_by_user(int(user_id))
+        return render_template("my_words.html", words=words)
+    else :
+        words = db.load_words_by_state("confirmada")
+        return render_template("my_words_confirm.html", words=words)
 
 app.run(debug=True)

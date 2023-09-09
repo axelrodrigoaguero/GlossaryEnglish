@@ -78,3 +78,7 @@ class DBAccess:
         self.cursor.execute("SELECT * FROM palabra WHERE id_usuario = ?", (user_id,))
         return self.cursor.fetchall()
 
+    def confirmed_word(self,id, estado):
+        sql = f"UPDATE palabra  SET state = '{estado}' WHERE id={id};"
+        self.cursor.execute(sql)
+        self.con.commit()
