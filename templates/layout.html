@@ -29,6 +29,7 @@
             {% if 'logueado' in session %}
                 {% if session['id_rol'] == 1 %}
                     <li><a href="/my_words">Pending Words</a></li>
+                    <li><a href="/my_words_confirm">Confirmeds Words</a></li>
                 {% elif session['id_rol'] == 2 %}
                     <li><a href="/my_words">Words</a></li>
                 {% endif %}
