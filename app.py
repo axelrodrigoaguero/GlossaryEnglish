@@ -20,7 +20,7 @@ def inicio():
 @app.route("/new_user")
 def new_user():
 
-   return render_template("new_user.html")
+    return render_template("new_user.html")
 
 #Funcion de Guardar Nuevo Usuario
 

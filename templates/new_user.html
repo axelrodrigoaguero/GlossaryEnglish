@@ -13,20 +13,43 @@
 {%endwith%}
 
 <body>
-    <div class="card_user_new">
-      <h2>New User!</h2>
-      <form class="form" method="POST" action="/check_in">
-        <input class="form-input" type="text" placeholder="Name" name="firstname" id="firstname">
-        <input class="form-input" type="email" placeholder="Enter email" name="email" id="email">
-        <input class="form-input" type="password" placeholder="Password" name="password" id="password">
-        <label for="teacher or student">Choose a Roll:</label>
-        <select class="form-select" name="teacher_or_student" id="teacher or student" style="margin-top: 5px">
-            <option value="1">student</option>
-            <option value="2">teacher</option>
-        </select>
-        <button class="button" type="submit">Check In</button>
-      </form>
-    </div>
+
+   <form class="form-user" method="POST" action="/check_in" autocomplete="off">
+       <h2>New User</h2>
+
+       <div class="input-group">
+
+           <div class="input-container">
+               <input type="text" name="firstname" placeholder="Name">
+               <i class="fa-solid fa-user"></i>
+           </div>
+
+           <div class="input-container">
+               <input type="email" name="email" placeholder="Email">
+               <i class="fa-solid fa-envelope"></i>
+           </div>
+
+           <div class="input-container">
+               <input type="password" name="password" placeholder="Password">
+               <i class="fa-solid fa-lock"></i>
+           </div>
+
+           <div class="input-container">
+               <select class="select" name="teacher_or_student" style="margin-top: 5px">
+                    <option value="1">student</option>
+                    <option value="2">teacher</option>
+                </select>
+           </div>
+
+           <a href="/login">I already have an account</a>
+
+
+           
+       </div>
+        <button class="button-user" type="submit">Check In</button>
+   </form>
+   <br>
+
 </body>
 
 
