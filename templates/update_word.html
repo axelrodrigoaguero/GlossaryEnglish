@@ -1,14 +1,25 @@
 {% extends "layout.html" %}
 {% block contenido %}
 
-<div class="card_word_new">
-      <h2>Update Word!</h2>
-      <form class="form" method="POST" action="/update_word/{{id}}">
-          <input class="form-input" type="text" placeholder="Word" name="word" id="word">
-        <input class="form-input" type="text" placeholder="Word Spanish" name="spanish" id="spanish">
-        <button class="button" type="submit">Save Word</button>
-      </form>
-    </div>
+<form class="form-word" method="POST" action="/update_word/{{id}}" autocomplete="off">
+       <h2>Update Word</h2>
+
+       <div class="input-group">
+
+           <div class="input-container">
+               <input type="text" name="word" placeholder="Word">
+               <i class="fa-solid fa-a"></i>
+           </div>
+
+           <div class="input-container">
+               <input type="email" name="spanish" placeholder="Word Spanish">
+               <i class="fa-solid fa-a"></i>
+           </div>
+
+       </div>
+          <button class="button" type="submit">Save Word</button>
+   </form>
+   <br>
 
 
 

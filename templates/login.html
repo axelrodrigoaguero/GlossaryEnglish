@@ -12,13 +12,27 @@
 {%endif%}
 {%endwith%}
 
-    <div class="card_login">
-      <h2>Login!</h2>
-      <form class="form" method="POST" action="/logeo">
-        <input class="form-input" type="text" placeholder="Email" name="email" id="email">
-        <input class="form-input" type="password" placeholder="Password"  name="password" id="password">
-        <button class="button" type="submit">Login</button>
-      </form>
-    </div>
+    <form class="form-login" method="POST" action="/logeo" autocomplete="off">
+       <h2>Login</h2>
+
+       <div class="input-group">
+
+           <div class="input-container">
+               <input type="email" name="email" placeholder="Email">
+               <i class="fa-solid fa-envelope"></i>
+           </div>
+
+           <div class="input-container">
+               <input type="password" name="password" placeholder="Password">
+               <i class="fa-solid fa-lock"></i>
+           </div>
+
+
+           <a href="/new_user">I do not have an account</a>
+
+       </div>
+        <button class="button-login" type="submit">Login</button>
+   </form>
+   <br>
 
 {% endblock %}

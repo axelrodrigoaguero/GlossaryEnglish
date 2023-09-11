@@ -12,16 +12,35 @@
 {%endif%}
 {%endwith%}
 
-    <div class="card_word_new">
-      <h2>New word!</h2>
-      <form class="form" method="POST" action="/save_word">
-        <input class="form-input" type="text" placeholder="Word" name="word" id="word">
-        <input class="form-input" type="text" placeholder="Word Spanish" name="spanish" id="spanish">
-        <input class="form-input_meaning" type="text" placeholder="Meaning" name="meaning" id="meaning">
-        <input class="form-input_spanish_meaning" type="text" placeholder="Spanish Meaning" name="spanish_meaning" id="spanish_meaning">
-        <button class="button" type="submit">Save Word</button>
-      </form>
-    </div>
-<br>
+  <form class="form-word" method="POST" action="/save_word" autocomplete="off">
+       <h2>New Word</h2>
+
+       <div class="input-group">
+
+           <div class="input-container">
+               <input type="text" name="word" placeholder="Word">
+               <i class="fa-solid fa-a"></i>
+           </div>
+
+           <div class="input-container">
+               <input type="email" name="spanish" placeholder="Word Spanish">
+               <i class="fa-solid fa-a"></i>
+           </div>
+
+           <div class="input-container">
+               <input type="password" name="meaning" placeholder="Meaning">
+               <i class="fa-solid fa-a"></i>
+           </div>
+
+           <div class="input-container">
+               <input type="password" name="spanish_meaning" placeholder="Spanish Meaning">
+               <i class="fa-solid fa-a"></i>
+           </div>
+
+       </div>
+          <button class="button" type="submit">Save Word</button>
+   </form>
+   <br>
+
 
 {% endblock %}
