@@ -13,7 +13,7 @@ class DBAccess:
         return self.cursor.fetchone()
 
     def view_meaning(self, id_palabra):
-        sql= f"SELECT * FROM significado WHERE id_palabra={id_palabra}"
+        sql= f"SELECT * FROM significado WHERE id_palabra= {id_palabra}"
         self.cursor.execute(sql)
         self.con.commit()
         return self.cursor.fetchall()
@@ -41,7 +41,7 @@ class DBAccess:
         self.con.commit()
 
     def delete_significado(self,id):
-        sql = f'DELETE FROM significado WHERE id=("{id}")'
+        sql = f'DELETE FROM significado WHERE id_palabra=("{id}")'
         self.cursor.execute(sql)
         self.con.commit()
 

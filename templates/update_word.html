@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block contenido %}
 
-<form class="form-word" method="POST" action="/update_word/{{id}}" autocomplete="off">
+<form class="form-word" method="POST" action="/update_word/{{id}}">
        <h2>Update Word</h2>
 
        <div class="input-group">
@@ -12,7 +12,7 @@
            </div>
 
            <div class="input-container">
-               <input type="email" name="spanish" placeholder="Word Spanish">
+               <input type="text" name="spanish" placeholder="Word Spanish">
                <i class="fa-solid fa-a"></i>
            </div>
 

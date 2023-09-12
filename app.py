@@ -32,7 +32,7 @@ def new_user_create():
         email = request.values.get("email")
         password = request.values.get("password")
         teacher_or_student = request.values.get("teacher_or_student")
-
+        print(teacher_or_student)
         if not name or not email or not password or not teacher_or_student :
             flash("All fields are required. Please fill them all out.")
             return redirect(url_for("new_user"))
@@ -221,8 +221,8 @@ def up_meaning(id,id_word):
 
 #Funcion de Actualizar Significado
 
-@app.route('/update_meaning/<string:id>/<id_word>', methods = ['POST'])
-def update_meaning(id,id_word):
+@app.route('/update_meaning/<string:id>/<string:id_word>', methods = ['POST'])
+def update_meaning(id ,id_word):
     if request.method == "POST" :
         db = DBAccess("database/glosario.db")
         meaning = request.values.get("meaning")
@@ -239,8 +239,8 @@ def update_meaning(id,id_word):
 
         db.update_meaning(meaning,spanish_meaning,id)
         flash("Update Meaning")
-        word = db.view_word(int(id_word))
-        meanings = db.view_meaning(int(id_word))
+        word = db.view_word(id_word)
+        meanings = db.view_meaning(id_word)
         return render_template("show_word.html", word=word, meanings=meanings)
 
 #Pagina de Formulario de Actualizar Palabra
