@@ -13,23 +13,21 @@
 {%endwith%}
 
   {% for word in words %}
-    
-    <div class="container-words">
-      <div class="card_words">
-        <div class="contenido_words">
-          <h3>{{word[1]}}</h3>
-          <p>{{word[2]}}</p>
-          <a href="/show_word_confirm/{{word.0}}">View</a>
-          <button class="button" type="submit"><a href="/show_word_confirm/{{word.0}}">View</a></button>
-          {% if 'logueado' in session %}
 
-            <a href="/delete_word/{{word.0}}">Delete</a>
-
-          {% endif %}
+    <div class="card_words">
+            <div class="contenido_words">
+                <h3>{{word[1]}}</h3>
+                <p>{{word[2]}}</p>
+                <div class="centered-buttons">
+                    <button class="button-words-view" ><a href="/show_word_confirm/{{word.0}}">View</a></button>
+                    {% if 'logueado' in session %}
+                        {% if session['id_rol'] == 2 %}
+                        <button class="button-words-delete" ><a href="/delete_word/{{word.0}}">Delete</a></button>
+                        {% endif %}
+                    {% endif %}
+                </div>
+            </div>
         </div>
-        
-      </div>
-    </div>    
   {% endfor %}
 
 {% endblock %}
