@@ -1,24 +1,24 @@
 {% extends "layout.html" %}
 {% block contenido %}
 
- <form class="form-word" method="POST" action="/update_meaning/{{id}}/{{id_word}}}" autocomplete="off">
+ <form class="form-word" method="POST" action="/update_meaning/{{id}}/{{id_word}}">
        <h2>Update Meaning</h2>
 
        <div class="input-group">
 
            <div class="input-container">
-               <input type="password" name="meaning" placeholder="Meaning">
+               <input type="text" name="meaning" placeholder="Meaning">
                <i class="fa-solid fa-a"></i>
            </div>
 
            <div class="input-container">
-               <input type="password" name="spanish_meaning" placeholder="Spanish Meaning">
+               <input type="text" name="spanish_meaning" placeholder="Spanish Meaning">
                <i class="fa-solid fa-a"></i>
            </div>
 
        </div>
-          <button class="button" type="submit">Save Meaning</button>
-   </form>
-   <br>
+     <button class="button" type="submit">Save Meaning</button>
+ </form>
+ <br>
 
 {% endblock %}

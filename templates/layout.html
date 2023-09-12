@@ -45,12 +45,12 @@
     </nav>
     <div class="btns-container">
         {% if 'logueado' in session %}
-            <a href="/logout" class="btn_Logout"><button>Logout</button></a>
             {% if session['id_rol'] == 1 %}
                 <p >Teacher</p>
             {% elif session['id_rol'] == 2 %}
                 <p>Student</p>
             {% endif %}
+             <a href="/logout" class="btn_Logout"><button>Logout</button></a>
         {% else %}
             <a href="/login" class="btn_Login"><button>Login</button></a>
             <a href="/new_user" class="btn_check_in"><button>Check In</button></a>

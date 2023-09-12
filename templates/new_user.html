@@ -14,7 +14,7 @@
 
 <body>
 
-   <form class="form-user" method="POST" action="/check_in" autocomplete="off">
+   <form class="form-user" method="POST" action="/check_in">
        <h2>New User</h2>
 
        <div class="input-group">
@@ -35,10 +35,11 @@
            </div>
 
            <div class="input-container">
-               <select class="select" name="teacher_or_student" style="margin-top: 5px">
-                    <option value="1">student</option>
-                    <option value="2">teacher</option>
+               <select class="select_rol" name="teacher_or_student">
+                    <option class="option" value="2">student</option>
+                    <option class="option" value="1">teacher</option>
                 </select>
+
            </div>
 
            <a href="/login">I already have an account</a>
