@@ -1,11 +1,10 @@
 from flask import Flask, render_template, request, url_for, flash, session, redirect
-import sqlite3
+
 
 from model.DBAccess import DBAccess
 
+db= DBAccess()
 
-
-connection =sqlite3.connect("DBAccess.py")
 app = Flask(__name__)
 
 app.secret_key= 'mysecertkey'
@@ -27,17 +26,15 @@ def new_user():
 @app.route("/check_in", methods = ['POST'])
 def new_user_create():
     if request.method == "POST":
-        db = DBAccess("database/glosario.db")
         name = request.values.get("firstname")
         email = request.values.get("email")
         password = request.values.get("password")
         teacher_or_student = request.values.get("teacher_or_student")
-        print(teacher_or_student)
         if not name or not email or not password or not teacher_or_student :
             flash("All fields are required. Please fill them all out.")
             return redirect(url_for("new_user"))
 
-        nuevo_id = db.agregar_usuario(name, email, password,teacher_or_student)
+        db.agregar_usuario(name, email, password,teacher_or_student)
         flash("User Saved")
         return app.redirect(url_for("new_user"))
 
@@ -56,7 +53,6 @@ def logeo():
     if request.method == "POST" and 'email' in request.form and 'password':
         email= request.form['email']
         password = request.form['password']
-        db = DBAccess("database/glosario.db")
         account= db.get_email_password(email,password)
         if account:
             session['logueado'] = True
@@ -86,7 +82,6 @@ def my_words():
 
     id_rol = session.get('id_rol')
 
-    db = DBAccess("database/glosario.db")
 
 
     if id_rol == 1 :
@@ -105,7 +100,6 @@ def my_words():
 
 @app.route("/show_word/<id>")
 def show_word(id):
-    db = DBAccess("database/glosario.db")
     word= db.view_word(int(id))
     meanings= db.view_meaning(int(id))
     return render_template("show_word.html", word= word, meanings= meanings)
@@ -114,7 +108,6 @@ def show_word(id):
 
 @app.route("/my_words_confirm")
 def my_words_confirm():
-    db = DBAccess("database/glosario.db")
     words = db.load_words_by_state("confirmada")
     return render_template("my_words_confirm.html", words=words)
 
@@ -122,7 +115,6 @@ def my_words_confirm():
 
 @app.route("/show_word_confirm/<id>")
 def show_word_confirm(id):
-    db = DBAccess("database/glosario.db")
     word= db.view_word(int(id))
     meanings= db.view_meaning(int(id))
     return render_template("show_word_confirm.html", word= word, meanings= meanings)
@@ -138,7 +130,6 @@ def new_word():
 @app.route("/save_word", methods = ['POST'])
 def save_word():
     if request.method == "POST":
-        db = DBAccess("database/glosario.db")
         word = request.values.get("word")
         spanish = request.values.get("spanish")
         if not word or not spanish:
@@ -156,7 +147,6 @@ def save_word():
 
 @app.route('/delete_word/<string:id>')
 def delete_word(id):
-    db = DBAccess("database/glosario.db")
     db.delete_palabra(id)
     db.delete_significado(id)
     flash("Delete Word")
@@ -178,7 +168,6 @@ def delete_word(id):
 
 @app.route("/delete_meaning/<string:id>/<id_word>")
 def delete_meaning(id,id_word):
-    db = DBAccess("database/glosario.db")
     db.delete_significado(id)
     flash("Delete Meaning")
     word = db.view_word(int(id_word))
@@ -197,7 +186,6 @@ def add_meaning(id):
 @app.route('/new_meaning/<string:id>', methods = ['POST'])
 def new_meaning(id):
     if request.method == "POST" :
-        db = DBAccess("database/glosario.db")
         meaning = request.values.get("meaning")
         spanish_meaning = request.values.get("spanish_meaning")
 
@@ -224,7 +212,6 @@ def up_meaning(id,id_word):
 @app.route('/update_meaning/<string:id>/<string:id_word>', methods = ['POST'])
 def update_meaning(id ,id_word):
     if request.method == "POST" :
-        db = DBAccess("database/glosario.db")
         meaning = request.values.get("meaning")
         spanish_meaning = request.values.get("spanish_meaning")
 
@@ -255,7 +242,6 @@ def up_word(id):
 @app.route('/update_word/<string:id>', methods = ['POST'])
 def update_word(id):
     if request.method == "POST" :
-        db = DBAccess("database/glosario.db")
         word = request.values.get("word")
         spanish = request.values.get("spanish")
         if not word or not spanish:
@@ -272,7 +258,6 @@ def update_word(id):
 
 @app.route('/confirm_word/<string:id>')
 def confirm_word(id):
-    db = DBAccess("database/glosario.db")
     estado= "confirmada"
     db.confirmed_word(id, estado)
     id_rol = session.get('id_rol')

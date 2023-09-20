@@ -1,8 +1,9 @@
-import sqlite3
+import psycopg2
+
 
 class DBAccess:
-    def __init__(self, ruta="glosario.db"):
-        self.con = sqlite3.connect(ruta)
+    def __init__(self):
+        self.con = psycopg2.connect(host="ep-lingering-feather-96861659.us-east-2.aws.neon.tech", database="glosario", user="axelrodrigoaguero", password="DeC9xRSAOjy0")
         self.cursor = self.con.cursor()
 
 
