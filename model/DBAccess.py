@@ -6,14 +6,17 @@ class DBAccess:
         self.con = psycopg2.connect(host="ep-lingering-feather-96861659.us-east-2.aws.neon.tech", database="glosario", user="axelrodrigoaguero", password="DeC9xRSAOjy0")
         self.cursor = self.con.cursor()
 
+    def close(self):
+        if self.cursor:
+            self.cursor.close()
+        if self.con:
+            self.con.close()
     def view_word(self, id):
         self.cursor.execute(f"SELECT * FROM palabra WHERE id= '{id}';")
-        self.con.commit()
         return self.cursor.fetchone()
 
     def view_meaning(self, id_palabra):
         self.cursor.execute(f"SELECT * FROM significado WHERE id_palabra= '{id_palabra}';")
-        self.con.commit()
         return self.cursor.fetchall()
 
     def agregar_palabra(self, eng, esp, us, sta) :
