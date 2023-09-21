@@ -9,6 +9,8 @@ app = Flask(__name__)
 
 app.secret_key= 'mysecertkey'
 
+
+
 #Pagina Principal
 @app.route("/")
 def inicio():

@@ -12,8 +12,9 @@
 {%endif%}
 {%endwith%}
 <body>
-      <h1 class="title_show">{{word[1]}}</h1>
-      <h3 class="title_show">{{word[2]}}</h3>
+      <br>
+      <h1 class="title_show">{{word[1]}}-{{word[2]}}</h1>
+      <br>
 
       {% if 'logueado' in session %}
             {% if session['id_rol'] == 2 %}
