@@ -130,15 +130,16 @@ def new_word():
 @app.route("/save_word", methods = ['POST'])
 def save_word():
     if request.method == "POST":
+        id_user= session.get('id')
         word = request.values.get("word")
         spanish = request.values.get("spanish")
         if not word or not spanish:
             flash("All fields are required. Please fill them all out.")
             return render_template("new_word.html")
-        nuevo_id = db.agregar_palabra(word, spanish,1,"pendiente")
+        id_palabra = db.agregar_palabra(word, spanish,id_user,"pendiente")
         meaning= request.values.get("meaning")
         spanish_meaning = request.values.get("spanish_meaning")
-        db.agregar_significado(meaning, spanish_meaning,  nuevo_id)
+        db.agregar_significado(meaning, spanish_meaning, id_palabra)
         flash("Word Saved")
         return app.redirect(url_for("new_word"))
     return render_template("new_word.html")
