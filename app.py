@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, url_for, flash, session, redirect
-
-
+import hashlib
 from model.DBAccess import DBAccess
 
 db= DBAccess()
@@ -25,22 +24,26 @@ def new_user():
 
 #Funcion de Guardar Nuevo Usuario
 
-@app.route("/check_in", methods = ['POST'])
+@app.route("/check_in", methods=['POST'])
 def new_user_create():
     if request.method == "POST":
         name = request.values.get("firstname")
         email = request.values.get("email")
         password = request.values.get("password")
         teacher_or_student = request.values.get("teacher_or_student")
-        if not name or not email or not password or not teacher_or_student :
+
+        if not name or not email or not password or not teacher_or_student:
             flash("All fields are required. Please fill them all out.")
             return redirect(url_for("new_user"))
 
-        db.agregar_usuario(name, email, password,teacher_or_student)
-        flash("User Saved")
-        return app.redirect(url_for("new_user"))
+        hashed_password = hashlib.md5(password.encode()).hexdigest()
 
-    return app.redirect(url_for("new_user"))
+        db.agregar_usuario(name, email, hashed_password, teacher_or_student)
+        flash("User Saved")
+        return redirect(url_for("new_user"))
+
+    return redirect(url_for("new_user"))
+
 
 #Pagina de Inicio de Session
 
@@ -50,25 +53,28 @@ def login():
 
 #Funcion Iniciar Session
 
-@app.route("/logeo", methods = ['GET','POST'])
+@app.route("/logeo", methods=['GET', 'POST'])
 def logeo():
-    if request.method == "POST" and 'email' in request.form and 'password':
-        email= request.form['email']
+    if request.method == "POST" and 'email' in request.form and 'password' in request.form:
+        email = request.form['email']
         password = request.form['password']
-        account= db.get_email_password(email,password)
+
+        # Hashea la contraseña ingresada con MD5 para compararla con la almacenada
+        hashed_password = hashlib.md5(password.encode()).hexdigest()
+
+        account = db.get_email_password(email, hashed_password)  # Compara con la contraseña hasheada
         if account:
             session['logueado'] = True
             session['id'] = account[0]
             session['id_rol'] = account[4]
-
-
             return render_template("home.html")
 
         else:
-            flash("Email of Password Invalid")
+            flash("Email or Password Invalid")
             return render_template("login.html")
 
     return render_template("login.html")
+
 
 #Funcion Cerrar Session
 
