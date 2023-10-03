@@ -34,6 +34,7 @@
                   <tr>
                         <td>{{meaning[1]}}</td>
                         <td>{{meaning[3]}}</td>
+                        {% if 'logueado' in session %}
                         <td>
                               {% if session['id_rol'] == 2 %}
                                     <div class="horizontal-buttons">
@@ -43,6 +44,7 @@
                               {% endif %}
                               <br>
                         </td>
+                        {% endif %}
                   </tr>
                   {% endfor %}
             </tbody>
